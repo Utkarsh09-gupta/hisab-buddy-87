@@ -80,3 +80,9 @@ export interface HisabData {
   friends: Friend[];
   transactions: Transaction[];
 }
+
+export type NewTransaction =
+  | Omit<PersonalTx, "id">
+  | Omit<IncomeTx, "id">
+  | Omit<FriendTx, "id">
+  | Omit<SettlementTx, "id">;

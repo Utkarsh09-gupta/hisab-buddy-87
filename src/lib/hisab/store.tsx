@@ -9,7 +9,7 @@ import {
 } from "react";
 
 import { MOCK_DATA } from "./mock";
-import type { Friend, HisabData, Profile, Transaction } from "./types";
+import type { Friend, HisabData, NewTransaction, Profile, Transaction } from "./types";
 
 const STORAGE_KEY = "hisab.data.v1";
 
@@ -23,7 +23,7 @@ interface HisabStore {
   data: HisabData;
   hydrated: boolean;
   addFriend: (friend: Omit<Friend, "id">) => Friend;
-  addTransaction: (tx: Omit<Transaction, "id">) => Transaction;
+  addTransaction: (tx: NewTransaction) => Transaction;
   updateTransaction: (id: string, patch: Partial<Transaction>) => void;
   deleteTransaction: (id: string) => void;
   updateProfile: (patch: Partial<Profile>) => void;
@@ -66,7 +66,7 @@ export function HisabProvider({ children }: { children: ReactNode }) {
     return created;
   }, []);
 
-  const addTransaction = useCallback((tx: Omit<Transaction, "id">) => {
+  const addTransaction = useCallback((tx: NewTransaction) => {
     const created = { ...tx, id: `t_${uid()}` } as Transaction;
     setData((d) => ({ ...d, transactions: [created, ...d.transactions] }));
     return created;

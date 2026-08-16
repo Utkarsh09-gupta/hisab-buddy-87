@@ -24,7 +24,6 @@ export function ModalShell({
   return (
     <Dialog open onOpenChange={(o) => !o && onClose()}>
       <DialogContent
-        showCloseButton
         className="flex max-h-[92dvh] w-full flex-col gap-0 overflow-hidden rounded-3xl border-border p-0 sm:max-w-lg max-sm:h-[92dvh] max-sm:max-w-none"
       >
         <DialogHeader className="border-b border-border/70 px-5 py-4 text-left">
