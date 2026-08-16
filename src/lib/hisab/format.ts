@@ -13,12 +13,16 @@ export const monthKey = (d: Date | string) => {
 };
 
 export const monthLabel = (key: string) => {
-  const [y, m] = key.split("-").map(Number);
+  const parts = key.split("-").map(Number);
+  const y = parts[0] ?? 2026;
+  const m = parts[1] ?? 1;
   return new Date(y, m - 1, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" });
 };
 
 export const shiftMonth = (key: string, delta: number) => {
-  const [y, m] = key.split("-").map(Number);
+  const parts = key.split("-").map(Number);
+  const y = parts[0] ?? 2026;
+  const m = parts[1] ?? 1;
   return monthKey(new Date(y, m - 1 + delta, 1));
 };
 
