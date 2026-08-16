@@ -10,12 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as MyMoneyRouteImport } from './routes/my-money'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as FriendsIndexRouteImport } from './routes/friends.index'
 import { Route as FriendsFriendIdRouteImport } from './routes/friends.$friendId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyMoneyRoute = MyMoneyRouteImport.update({
+  id: '/my-money',
+  path: '/my-money',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FriendsIndexRoute = FriendsIndexRouteImport.update({
@@ -31,30 +49,61 @@ const FriendsFriendIdRoute = FriendsFriendIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/history': typeof HistoryRoute
+  '/my-money': typeof MyMoneyRoute
+  '/settings': typeof SettingsRoute
   '/friends/$friendId': typeof FriendsFriendIdRoute
   '/friends/': typeof FriendsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/history': typeof HistoryRoute
+  '/my-money': typeof MyMoneyRoute
+  '/settings': typeof SettingsRoute
   '/friends/$friendId': typeof FriendsFriendIdRoute
   '/friends': typeof FriendsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/history': typeof HistoryRoute
+  '/my-money': typeof MyMoneyRoute
+  '/settings': typeof SettingsRoute
   '/friends/$friendId': typeof FriendsFriendIdRoute
   '/friends/': typeof FriendsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/friends/$friendId' | '/friends/'
+  fullPaths:
+    | '/'
+    | '/history'
+    | '/my-money'
+    | '/settings'
+    | '/friends/$friendId'
+    | '/friends/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/friends/$friendId' | '/friends'
-  id: '__root__' | '/' | '/friends/$friendId' | '/friends/'
+  to:
+    | '/'
+    | '/history'
+    | '/my-money'
+    | '/settings'
+    | '/friends/$friendId'
+    | '/friends'
+  id:
+    | '__root__'
+    | '/'
+    | '/history'
+    | '/my-money'
+    | '/settings'
+    | '/friends/$friendId'
+    | '/friends/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HistoryRoute: typeof HistoryRoute
+  MyMoneyRoute: typeof MyMoneyRoute
+  SettingsRoute: typeof SettingsRoute
   FriendsFriendIdRoute: typeof FriendsFriendIdRoute
   FriendsIndexRoute: typeof FriendsIndexRoute
 }
@@ -66,6 +115,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-money': {
+      id: '/my-money'
+      path: '/my-money'
+      fullPath: '/my-money'
+      preLoaderRoute: typeof MyMoneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/friends/': {
@@ -87,6 +157,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HistoryRoute: HistoryRoute,
+  MyMoneyRoute: MyMoneyRoute,
+  SettingsRoute: SettingsRoute,
   FriendsFriendIdRoute: FriendsFriendIdRoute,
   FriendsIndexRoute: FriendsIndexRoute,
 }
