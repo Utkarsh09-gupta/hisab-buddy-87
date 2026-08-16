@@ -12,8 +12,9 @@ export const CATEGORIES: { value: ExpenseCategory; label: string; emoji: string 
   { value: "other", label: "Other", emoji: "📦" },
 ];
 
+const OTHER_CATEGORY = { value: "other" as ExpenseCategory, label: "Other", emoji: "📦" };
 export const categoryMeta = (c: ExpenseCategory) =>
-  CATEGORIES.find((x) => x.value === c) ?? CATEGORIES[CATEGORIES.length - 1];
+  CATEGORIES.find((x) => x.value === c) ?? OTHER_CATEGORY;
 
 export const SOURCES: { value: IncomeSource; label: string; emoji: string }[] = [
   { value: "home", label: "Home", emoji: "🏡" },
@@ -23,5 +24,6 @@ export const SOURCES: { value: IncomeSource; label: string; emoji: string }[] = 
   { value: "other", label: "Other", emoji: "✨" },
 ];
 
+const OTHER_SOURCE = { value: "other" as IncomeSource, label: "Other", emoji: "✨" };
 export const sourceMeta = (s: IncomeSource) =>
-  SOURCES.find((x) => x.value === s) ?? SOURCES[SOURCES.length - 1];
+  SOURCES.find((x) => x.value === s) ?? OTHER_SOURCE;
