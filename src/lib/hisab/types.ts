@@ -3,7 +3,7 @@ export type ID = string;
 export interface Friend {
   id: ID;
   name: string;
-  phone?: string;
+  phone?: string | undefined;
 }
 
 export type ExpenseCategory =
@@ -29,7 +29,7 @@ interface BaseTx {
   id: ID;
   /** ISO date string */
   date: string;
-  note?: string;
+  note?: string | undefined;
 }
 
 export interface PersonalTx extends BaseTx {
